@@ -1,4 +1,4 @@
-
+//import package SimpleDateFormat, Date, dan Scanner
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
@@ -6,12 +6,17 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         //Do your magic here...
+
+        //deklarasi scanner
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Selamat Datang di Pemesanan Tiket!");
+
+        //input nama pemesan melalui scanner dan simpan di variabel namaPemesan
         System.out.print("Masukkan nama pemesan: ");
         String namaPemesan = scanner.next();
 
+        //input jenis tiket yang dipilih berupa angka int 1-5 dan simpan di variabel pilihan
         System.out.println("Pilih jenis tiket:");
         System.out.println("1. CAT 8");
         System.out.println("2. CAT 1");
@@ -20,9 +25,15 @@ public class Main {
         System.out.println("5. UNLIMITED EXPERIENCE");
         System.out.print("Masukkan pilihan: ");
         int pilihan = scanner.nextInt();
+
+        //deklarasi class TiketKonser yang nantinya bisa diberi nilai class turunannya
         TiketKonser tiketKonser;
+
+        //deklarasi class PemesananTiket
         PemesananTiket pemesananTiket;
 
+
+        //pengkondisian dengan switch case untuk mengecek pilihan jenis tiket yang dipilih, parameter yang digunakan adalah variabel pilihan, lalu inisialisasi tiketKonser dan pemesananTiket untuk masing-masing case, lalu cetak detail tiket
         switch (pilihan) {
             case 1:
                 tiketKonser = new CAT8();
@@ -49,11 +60,14 @@ public class Main {
                 pemesananTiket = new PemesananTiket(namaPemesan, generateKodeBooking(), getCurrentDate(), tiketKonser);
                 pemesananTiket.cetakTiket();
                 break;    
+            //jika pilihan tidak valid (diluar 1-5) maka akan masuk ke default dimana akan dicetak pesan dan kode akan berhenti
             default:
                 System.out.println("Pilihan tidak valid!");
                 System.exit(0);
                 break;
         }
+
+        //close scanner
         scanner.close();
     }
 
